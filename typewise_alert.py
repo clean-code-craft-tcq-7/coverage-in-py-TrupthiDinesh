@@ -5,14 +5,14 @@ def infer_breach(value, lower_limit, upper_limit):
         return 'TOO_HIGH'
     return 'NORMAL'
 
-limits = {
+Limits = {
     'PASSIVE_COOLING': (0, 35),
     'HI_ACTIVE_COOLING': (0, 45),
     'MED_ACTIVE_COOLING': (0, 40),
 }
 
 def check_and_alert(alert_target, battery_char, temperature_in_c):
-    lower_limit, upper_limit = limits[battery_char['coolingType']]
+    lower_limit, upper_limit = Limits[battery_char['coolingType']]
     breach_type = infer_breach(temperature_in_c, lower_limit, upper_limit)
     if alert_target == 'TO_CONTROLLER':
         send_to_controller(breach_type)
